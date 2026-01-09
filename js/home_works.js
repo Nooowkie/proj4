@@ -77,3 +77,21 @@ moveBlock();
       secondsDisplay.textContent = seconds;
     }, 300);
   });
+
+  
+//запрос XMLHttpRequest
+const request = new XMLHttpRequest();
+
+request.open("GET", "../data/any.json");
+
+request.responseType = "json";
+
+request.onload = function () {
+  if (request.status === 200) {
+    console.log(request.response); 
+  } else {
+    console.error("Ошибка:", request.status);
+  }
+};
+
+request.send();
