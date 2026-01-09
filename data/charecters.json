@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Alice",
+        "age": 30,
+        "photo": "http://example.com/alice.jpg"
+    },
+    {
+        "name": "Bob",
+        "age": 25,
+        "photo": "http://example.com/bob.jpg"
+    },
+    {
+        "name": "Charlie",
+        "age": 35,
+        "photo": "http://example.com/charlie.jpg"
+    }
+]

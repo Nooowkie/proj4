@@ -44,3 +44,36 @@ const moveBlock = () => {
 };
 
 moveBlock();
+
+
+//Счетчик
+  let seconds = 0;
+  let intervalId = null;
+
+  const secondsDisplay = document.getElementById('seconds');
+  const startBtn = document.getElementById('start');
+  const stopBtn = document.getElementById('stop');
+  const resetBtn = document.getElementById('reset');
+
+  startBtn.addEventListener('click', () => {
+    if (intervalId === null) {
+      intervalId = setInterval(() => {
+        seconds++;
+        secondsDisplay.textContent = seconds;
+      }, 1000);
+    }
+  });
+
+  stopBtn.addEventListener('click', () => {
+    clearInterval(intervalId);
+    intervalId = null;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    clearInterval(intervalId);
+    intervalId = null;
+    setTimeout(() => {
+      seconds = 0;
+      secondsDisplay.textContent = seconds;
+    }, 300);
+  });
