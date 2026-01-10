@@ -58,3 +58,45 @@ tabParent.onclick = (event) => {
 hideSlide()
 showSlide(index)
 autoSlider(index)
+
+//convertor
+const somInput = document.querySelector("#som");
+const usdInput = document.querySelector("#usd");
+const eurInput = document.querySelector("#eur");
+
+const convertor = (element) => {
+    element.addEventListener("input", async () => {
+        try {
+            const response = await fetch('../data/convertor.json');
+            const data = await response.json();
+
+            const som = parseFloat(somInput.value);
+            const usd = parseFloat(usdInput.value);
+            const eur = parseFloat(eurInput.value);
+
+            if (element.id === 'som') {
+                usdInput.value = (element.value / data.usd).toFixed(2);
+                eurInput.value = (element.value / data.eur).toFixed(2);
+            } else if (element.id === 'usd') {
+                somInput.value = (element.value * data.usd).toFixed(2);
+                eurInput.value = ((element.value * data.usd) / data.eur).toFixed(2);
+            } else if (element.id === 'eur') {
+                usdInput.value = ((element.value * data.eur) / data.usd).toFixed(2);
+                somInput.value = (element.value * data.eur).toFixed(2);
+            }
+
+            if (element.value === '') {
+                somInput.value = '';
+                usdInput.value = '';
+                eurInput.value = '';
+            }
+
+        } catch (error) {
+            console.error('Ошибка при конвертации валют:', error);
+        }
+    });
+};
+
+convertor(somInput);
+convertor(usdInput);
+convertor(eurInput);
